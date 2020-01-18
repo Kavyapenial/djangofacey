@@ -6,7 +6,10 @@ from user_auth.models import Teacher
 class Branch(models.Model):
     bname = models.CharField(max_length=50, default=None)
     bcode = models.CharField(max_length=50, default=None)
-    
+
+    def __str__(self):
+        return self.bname
+
     def __str__(self):
         return self.bname
 
@@ -37,8 +40,9 @@ class Subject(models.Model):
     sem = models.IntegerField(default=0)
     subject = models.CharField(max_length=50, default=None)
     credit = models.IntegerField(default=0)
+
     def __str__(self):
-        return self.bname
+        return self.subject
 
 
 class Attendance(models.Model):
@@ -47,3 +51,6 @@ class Attendance(models.Model):
     date = models.DateField(default=0)
     hour = models.IntegerField(default=0)
     is_present = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.date)
