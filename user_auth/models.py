@@ -10,4 +10,4 @@ class Teacher(models.Model):
     name = models.CharField(max_length=50, default=None)
     pic = models.ImageField(default=None)
     designation = models.CharField(max_length=50, default=None)
-    email = models.ForeignKey(max_length=50, default=None)
+    email = models.EmailField(max_length=50, default=None)
