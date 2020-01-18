@@ -4,11 +4,13 @@ from user_auth.models import Teacher
 
 
 class Branch(models.Model):
+    bname = models.CharField(max_length=50, default=None)
+    bcode = models.CharField(max_length=50, default=None)
 
 
 class Batch(models.Model):
     batch = models.IntegerField(default=0)
-    branch = models.ForeignKey(max_length=50, default=None)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
     sem = models.IntegerField(default=0)
 
     def __str__(self):
