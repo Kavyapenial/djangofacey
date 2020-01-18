@@ -29,7 +29,7 @@ class StudentAdmin(admin.ModelAdmin):
 class BranchAdmin(admin.ModelAdmin):
     list_display = ('bcode', 'bname',)
     ordering = ('bname',)
-    search_fields = ('bname', )
+    search_fields = ('bname',)
 
 
 @admin.register(Subject)

@@ -7,6 +7,9 @@ class Branch(models.Model):
     bname = models.CharField(max_length=50, default=None)
     bcode = models.CharField(max_length=50, default=None)
 
+    def __str__(self):
+        return self.bname
+
 
 class Batch(models.Model):
     batch = models.IntegerField(default=0)
@@ -35,6 +38,9 @@ class Subject(models.Model):
     subject = models.CharField(max_length=50, default=None)
     credit = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.subject
+
 
 class Attendance(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -42,3 +48,6 @@ class Attendance(models.Model):
     date = models.DateField(default=0)
     hour = models.IntegerField(default=0)
     is_present = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.date)
