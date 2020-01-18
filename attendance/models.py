@@ -1,35 +1,42 @@
 from django.db import models
 from user_auth.models import Teacher
 # Create your models here.
+
+
+class Branch(models.Model):
+
+
 class Batch(models.Model):
-    branch_id = models.IntegerField(default=0)
     batch = models.IntegerField(default=0)
-    branch = models.CharField(max_length=50, default=None)
+    branch = models.ForeignKey(max_length=50, default=None)
+    sem = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.batch + ' ' + self.branch)
+
 
 class Student(models.Model):
-    branch_id = models.ForeignKey(Batch, on_delete=models.CASCADE)
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
     reg_id = models.IntegerField(default=0)
-    pic = models.ImageField(default=None)
+    profile = models.ImageField(default=None)
     name = models.CharField(max_length=50, default=None)
 
+    def __str__(self):
+        return self.name
+
+
 class Subject(models.Model):
-    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    branch_id = models.ForeignKey(Batch, on_delete=models.CASCADE)
-    sub_id = models.IntegerField(default=0)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    subject_code = models.CharField(default='', max_length=6)
     sem = models.IntegerField(default=0)
     subject = models.CharField(max_length=50, default=None)
     credit = models.IntegerField(default=0)
 
+
 class Attendance(models.Model):
-    sub_id = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    stud_reg_no = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     date = models.DateField(default=0)
     hour = models.IntegerField(default=0)
     is_present = models.BooleanField(default=False)
-
-
-
-
-
-
-   
