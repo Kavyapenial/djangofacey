@@ -10,10 +10,6 @@ class Branch(models.Model):
     def __str__(self):
         return self.bname
 
-    def __str__(self):
-        return self.bname
-
-
 class Batch(models.Model):
     batch = models.IntegerField(default=0)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
