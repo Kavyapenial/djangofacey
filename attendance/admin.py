@@ -20,7 +20,7 @@ class AttendanceAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('reg_id', 'branch', 'profile', 'name',)
+    list_display = ('reg_id','batch', 'profile', 'name',)
     ordering = ('name',)
     search_fields = ('name', 'reg_id',)
 
