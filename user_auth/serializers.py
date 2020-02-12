@@ -1,9 +1,17 @@
 from django.core.validators import validate_email
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
+from rest_framework_jwt.utils import api_settings
 from rest_framework.response import Response
 
 from .models import Teacher
+
+
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+
 
 class TeacherEmailSerializer(serializers.Serializer):
 

@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import TeacherEmailVerify
+from .views import TeacherEmailVerify, TeacherRetreiveView
 
 urlpatterns = [
     path('verify/', TeacherEmailVerify.as_view(), name= "teacher_email_verification"),
+    path('info/<int:pk>', TeacherRetreiveView.as_view(), name="teacher_details")
 ]

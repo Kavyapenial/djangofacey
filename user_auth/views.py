@@ -1,11 +1,13 @@
 from django.shortcuts import render
 
 from rest_framework.views import APIView
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 
-from .serilaizers import TeacherEmailSerializer
+from .models import Teacher
+from .serializers import TeacherEmailSerializer, TeacherSerializer
 
 
 class TeacherEmail(object):
@@ -13,6 +15,12 @@ class TeacherEmail(object):
     def __init__(self, email, token):
         self.email = email
         self.token = token
+
+class TeacherRetreiveView(generics.RetrieveAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 
 class TeacherEmailVerify(APIView):
@@ -34,7 +42,6 @@ class TeacherEmailVerify(APIView):
         else:
 
             teacherObject =  teacherEmailSerializer.save()
-            print(teacherEmailSerializer)
             return Response(teacherEmailSerializer.data,200)
 
 
