@@ -1,23 +1,6 @@
 from django.db import models
-from teachers.models import Teacher
+from college.models import Batch, Subject
 # Create your models here.
-
-
-class Branch(models.Model):
-    bname = models.CharField(max_length=50, default=None)
-    bcode = models.CharField(max_length=50, default=None)
-
-    def __str__(self):
-        return self.bname
-
-class Batch(models.Model):
-    batch = models.IntegerField(default=0)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
-    sem = models.IntegerField(default=0)
-
-    def __str__(self):
-        return str(self.batch + ' ' + self.branch)
-
 
 class Student(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
@@ -29,18 +12,6 @@ class Student(models.Model):
         return self.name
 
 
-class Subject(models.Model):
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
-    subject_code = models.CharField(default='', max_length=6)
-    sem = models.IntegerField(default=0)
-    subject = models.CharField(max_length=50, default=None)
-    credit = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.subject
-
-
 class Attendance(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -50,3 +21,4 @@ class Attendance(models.Model):
 
     def __str__(self):
         return str(self.date)
+
