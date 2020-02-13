@@ -22,7 +22,7 @@ class Batch(models.Model):
     sem = models.ForeignKey(Semester, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.batch)
+        return str(self.year)
 
 
 class Subject(models.Model):

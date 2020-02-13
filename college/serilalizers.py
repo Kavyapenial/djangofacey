@@ -1,4 +1,3 @@
-from django.core.validators import validate_email
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.utils import api_settings

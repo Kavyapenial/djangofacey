@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Attendance, Student
+from .models import Attendance, Student, AttendanceCaptureProof
 
 
 @admin.register(Attendance)
@@ -14,10 +14,15 @@ class AttendanceAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('reg_id','batch', 'profile', 'name',)
+    list_display = ('reg_id','name','batch', 'profile',)
     ordering = ('name',)
     search_fields = ('name', 'reg_id',)
     list_filter = ('batch',)
+    
+@admin.register(AttendanceCaptureProof)
+class AttendanceImageAdmin(admin.ModelAdmin):
+    list_display = ('date','capture_image',)
+    ordering = ('date',)
     
 
 
