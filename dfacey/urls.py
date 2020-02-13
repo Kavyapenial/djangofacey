@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.utils.translation import ugettext_lazy
+
+admin.site.site_header = 'Facey Adminstration'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('user_auth.urls'))
+    path('auth/', include('teachers.urls'))
 ]

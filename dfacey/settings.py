@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      
      #app
-     'user_auth',
+     'teachers',
      'attendance',
+     'dfacey',
      'rest_framework'
 
 
@@ -80,7 +81,7 @@ ROOT_URLCONF = 'dfacey.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
