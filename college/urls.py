@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import TeacherEmailVerify, TeacherRetreiveView
+from .views import SubjectListView, SemesterListView, BatchListView, BranchListView
 
 urlpatterns = [
-    path('verify/', TeacherEmailVerify.as_view(), name= "teacher_email_verification"),
-    path('info/<int:pk>', TeacherRetreiveView.as_view(), name="teacher_details")
+    path('subjects/<int:id>/', SubjectListView.as_view(), name= "subject_list"),
+    path('semester/', SemesterListView.as_view(), name="semester_list"),
+    path('batchs/<int:id>/', BatchListView.as_view(), name="batch_list"),
+    path('branchs/', BranchListView.as_view(), name="branch_list"),
 ]

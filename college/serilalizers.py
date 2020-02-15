@@ -17,11 +17,14 @@ class BranchSerializers(serializers.ModelSerializer):
         fields ='__all__'
 
 class BatchSerializers(serializers.ModelSerializer):
+
+    branch = BranchSerializers()
+    sem = SemesterSerializers()
     class Meta:
         model = Batch
-        fields =  '__all__'
+        fields = ('id','year','branch', 'sem')
 
 class SubjectSerializers(serializers.ModelSerializer):
     class Meta:
-        model =  Semester
+        model =  Subject
         fields = '__all__'

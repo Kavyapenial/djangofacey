@@ -5,7 +5,6 @@ import numpy as np
 def get_encodings_from_profile_pic(picture):
     processed_pic = face_recognition.load_image_file(picture)
     face_encodings = face_recognition.face_encodings(processed_pic)[0]
-    print(face_encodings)
     return face_encodings.dumps()
 
 

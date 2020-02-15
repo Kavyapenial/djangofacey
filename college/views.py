@@ -11,10 +11,23 @@ class SubjectListView(generics.ListAPIView):
     serializer_class = SubjectSerializers
     permission_classes = [permissions.IsAuthenticated]
 
+    def list(self, request, id,  *args, **kwargs):
+        teacher =  request.user.id
+        print(teacher)
+        queryset = Subject.objects.filter(branch = id)
+        serializer = SubjectSerializers(queryset, many = True)
+        return Response(serializer.data)
+
 class BatchListView(generics.ListAPIView):
     queryset =  Batch.objects.all()
     serializer_class = BatchSerializers
     permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request, id,  *args, **kwargs):
+        queryset = Batch.objects.filter(branch = id)
+        serializer = BatchSerializers(queryset, many = True)
+        return Response(serializer.data)
+
 
 class BranchListView(generics.ListAPIView):
     queryset =  Branch.objects.all()

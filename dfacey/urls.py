@@ -21,5 +21,6 @@ admin.site.site_header = 'Facey Adminstration'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('teachers.urls'))
+    path('auth/', include('teachers.urls')),
+    path('college/', include('college.urls'))
 ]

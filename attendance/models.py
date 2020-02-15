@@ -38,10 +38,11 @@ class AttendanceCaptureProof(models.Model):
     capture_image = models.ImageField(default=None)
 
 
-# def save_image(sender, instance, *args, **kwargs):
-#     students = Student.objects.filter(batch = 2)
-#     student_ids = identify_students_in_pic(students, instance.capture_image)
+def save_image(sender, instance, *args, **kwargs):
+    students = Student.objects.filter(batch = 2)
+    student_ids = identify_students_in_pic(students, instance.capture_image)
+    print(student_ids)
 
 
-# pre_save.connect(save_image, sender=AttendanceCaptureProof)
+pre_save.connect(save_image, sender=AttendanceCaptureProof)
 
