@@ -10,6 +10,7 @@ from .models import Teacher
 from .serializers import TeacherEmailSerializer, TeacherSerializer
 
 
+
 class TeacherEmail(object):
     token = None
     def __init__(self, email, token):

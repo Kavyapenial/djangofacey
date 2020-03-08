@@ -6,7 +6,6 @@ from rest_framework.response import Response
 
 from .models import Teacher
 
-
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher

@@ -1,5 +1,5 @@
-from rest_framework import generics
-from rest_framework.response import Response
+from rest_framework import generics, views
+from rest_framework.response import Response,
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 
@@ -16,3 +16,8 @@ class AttendanceCaptureProofCreateView(generics.CreateAPIView):
     queryset = AttendanceCaptureProof.objects.all()
     serializer_class = AttendanceCaptureProofSerializers
     permission_classes = [permissions.IsAuthenticated]
+
+class AttendanceConfirmAPIView(views.APIView):
+
+    def post(self, request):
+        print(request)

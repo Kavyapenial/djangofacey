@@ -13,7 +13,6 @@ class SubjectListView(generics.ListAPIView):
 
     def list(self, request, id,  *args, **kwargs):
         teacher =  request.user.id
-        print(teacher)
         queryset = Subject.objects.filter(branch = id)
         serializer = SubjectSerializers(queryset, many = True)
         return Response(serializer.data)

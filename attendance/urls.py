@@ -14,14 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.utils.translation import ugettext_lazy
-
-admin.site.site_header = 'Facey Adminstration'
+from django.urls import path
+from .views import AttendanceCaptureProofCreateView, AttendanceConfirmAPIView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('teachers.urls')),
-    path('college/', include('college.urls')),
-    path('attendance/', include('attendance.urls'))
+    path('upload/', AttendanceCaptureProofCreateView.as_view(), name= "subject_list"),
+    path('confirm/', AttendanceConfirmAPIView.as_view(), name= "confirm_student_list"),
 ]

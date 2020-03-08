@@ -6,6 +6,17 @@ from django.db.models.signals import pre_save
 
 # Create your models here.
 
+class StudentObject(object):
+    token = None
+    def __init__(self, id,  name, batch, reg_id, profile, is_present):
+        self.name = name
+        self.batch = batch
+        self.reg_id = reg_id
+        self.profile = profile
+        self.is_present = is_present
+
+
+
 class Student(models.Model):
     name = models.CharField(max_length=50, default=None)
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
@@ -38,11 +49,11 @@ class AttendanceCaptureProof(models.Model):
     capture_image = models.ImageField(default=None)
 
 
-def save_image(sender, instance, *args, **kwargs):
-    students = Student.objects.filter(batch = 2)
-    student_ids = identify_students_in_pic(students, instance.capture_image)
-    print(student_ids)
+# def save_image(sender, instance, *args, **kwargs):
+#     students = Student.objects.filter(batch = 2)
+#     students_result = identify_students_in_pic(students, instance.capture_image, StudentObject)
+#     print(students_result)
 
 
-pre_save.connect(save_image, sender=AttendanceCaptureProof)
+# pre_save.connect(save_image, sender=AttendanceCaptureProof)
 
