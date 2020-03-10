@@ -9,6 +9,7 @@ from django.db.models.signals import pre_save
 class StudentObject(object):
     token = None
     def __init__(self, id,  name, batch, reg_id, profile, is_present):
+        self.id = id
         self.name = name
         self.batch = batch
         self.reg_id = reg_id
@@ -29,7 +30,6 @@ class Student(models.Model):
 
 def save_student(sender, instance, *args, **kwargs):
     instance.face_encodings = get_encodings_from_profile_pic(instance.profile)
-    print(instance.face_encodings)
 
 pre_save.connect(save_student, sender=Student)
 

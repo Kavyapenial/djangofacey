@@ -18,6 +18,7 @@ class StudentSerializers(serializers.ModelSerializer):
 
 
 class StudentResultSerailizers(serializers.Serializer):
+    id =  serializers.IntegerField()
     name = serializers.CharField()
     batch = serializers.IntegerField()
     reg_id = serializers.IntegerField()
@@ -26,16 +27,17 @@ class StudentResultSerailizers(serializers.Serializer):
     
 class AttendanceCaptureProofSerializers(serializers.ModelSerializer):
     students_data = serializers.ListField(read_only = True)
+    batch = serializers.IntegerField(write_only = True)
     class Meta:
         model = AttendanceCaptureProof
-        fields = '__all__'
+        fields = ('capture_image', 'students_data','batch')
 
     def create(self, validated_data):
-        students = Student.objects.filter(batch = 2)
+        students = Student.objects.filter(batch = validated_data['batch'])
         students_result = identify_students_in_pic(students, validated_data['capture_image'], StudentObject)
         student_serializer = StudentResultSerailizers(students_result, many = True)
         validated_data['students_data'] = student_serializer.data
-        attendace = AttendanceCaptureProof(date= validated_data['date'], capture_image =  validated_data['capture_image'])
+        attendace = AttendanceCaptureProof(date= '2019-03-10', capture_image =  validated_data['capture_image'])
         attendace.save()
         return validated_data
 
