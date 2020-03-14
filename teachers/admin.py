@@ -14,3 +14,4 @@ class TeacherAdmin(admin.ModelAdmin):
             'fields': ('name', 'designation', 'email','pic',)
         }),
     )
+    list_filter = ('designation',)

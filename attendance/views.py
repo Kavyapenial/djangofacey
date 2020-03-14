@@ -25,6 +25,7 @@ class AttendanceConfirmAPIView(views.APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
+        hour =  request.data['hour']
         subject =  request.data['subject']
         batch = request.data['batch']
         date = datetime.datetime.now()
@@ -34,10 +35,10 @@ class AttendanceConfirmAPIView(views.APIView):
         students = Student.objects.filter(batch = batch)
         for student in students:
             if student.id in student_ids:
-                attendance = Attendance(subject = subjectObj, student = student, date = date, hour = 1, is_present = True)
+                attendance = Attendance(subject = subjectObj, student = student, date = date, hour = hour, is_present = True)
                 attendance.save()
             else:
-                attendance = Attendance(subject = subjectObj, student = student, date = date, hour = 1, is_present = False)
+                attendance = Attendance(subject = subjectObj, student = student, date = date, hour = hour, is_present = False)
                 attendance.save()
         context = {}
         context['success'] =  True

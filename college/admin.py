@@ -17,7 +17,7 @@ class SubjectAdmin(admin.ModelAdmin):
     list_display = ('subject_code','subject', 'teacher', 'branch',
                     'sem', 'credit',)
     ordering = ('subject',)
-    search_fields = ('subject', 'teacher', 'subject_code',)
+    search_fields = ('subject', 'teacher__name', 'subject_code',)
     list_filter = ('branch','teacher', 'sem', 'credit', )
     
 

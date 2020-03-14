@@ -45,9 +45,8 @@ INSTALLED_APPS = [
      'attendance',
      'dfacey',
      'college',
-     'rest_framework'
-
-
+     'rest_framework',
+     'rangefilter',
 ]
 
 MIDDLEWARE = [

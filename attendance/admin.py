@@ -1,4 +1,5 @@
 from django.contrib import admin
+from rangefilter.filter import DateRangeFilter
 
 # Register your models here.
 from .models import Attendance, Student, AttendanceCaptureProof
@@ -8,8 +9,9 @@ from .models import Attendance, Student, AttendanceCaptureProof
 class AttendanceAdmin(admin.ModelAdmin):
     list_display = ('subject', 'student', 'date', 'hour', 'is_present',)
     ordering = ('date',)
-    search_fields = ('subject', 'date',)
-    list_filter = ('subject','student', 'date', )
+    search_fields = ( 'student__name', 'student__reg_id', 'subject__subject', 'subject__subject_code')
+    list_filter = ('subject',
+        ('date', DateRangeFilter),)
 
 
 @admin.register(Student)
