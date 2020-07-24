@@ -34,6 +34,7 @@ class AttendanceCaptureProofSerializers(serializers.ModelSerializer):
 
     def create(self, validated_data):
         students = Student.objects.filter(batch = validated_data['batch'])
+        print(validated_data['capture_image'])
         students_result = identify_students_in_pic(students, validated_data['capture_image'], StudentObject)
         student_serializer = StudentResultSerailizers(students_result, many = True)
         validated_data['students_data'] = student_serializer.data

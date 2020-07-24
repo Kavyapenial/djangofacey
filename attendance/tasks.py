@@ -27,10 +27,14 @@ def identify_students_in_pic(students,picture, StudentObject):
     prescent_student_ids= []
     stud_results = []
 
+    print(encodings)
+
     for encoding in encodings:
+        print("hello")
         for student in students:
             student_pic_encodings =  np.loads(student.face_encodings)
             results = face_recognition.compare_faces([encoding], student_pic_encodings)
+            print(student.id)
             if results[0]:
                 if not student.id in prescent_student_ids:
                     prescent_student_ids.append(student.id)

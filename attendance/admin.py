@@ -16,7 +16,7 @@ class AttendanceAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('reg_id','name','batch', 'profile',)
+    list_display = ('reg_id','name','batch', 'profile', 'face_encodings',)
     ordering = ('name',)
     search_fields = ('name', 'reg_id',)
     list_filter = ('batch',)
