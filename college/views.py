@@ -4,6 +4,7 @@ from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 
 from .models import Batch, Branch, Semester, Subject
+from teachers.models import Teacher
 from .serilalizers import BranchSerializers, BatchSerializers, SemesterSerializers, SubjectSerializers
 
 class SubjectListView(generics.ListAPIView):
@@ -12,8 +13,11 @@ class SubjectListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, id,  *args, **kwargs):
-        teacher =  request.user.id
-        queryset = Subject.objects.filter(branch = id)
+        teacher =  Teacher.objects.filter(user=request.user)
+        if teacher.exists():
+            queryset = Subject.objects.filter(branch = id,teacher=teacher[0])
+        else:
+            queryset = Subject.objects.filter(branch = id)
         serializer = SubjectSerializers(queryset, many = True)
         return Response(serializer.data)
 
